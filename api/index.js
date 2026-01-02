@@ -15,17 +15,15 @@ app.use(
   })
 );
 
-app.options("*", cors()); 
+app.options("*", cors());
 
 
 app.use(express.json());
 
-// test route
 app.get("/", (req, res) => {
   res.send("Backend running 🚀");
 });
 
-// routes
 app.use("/api/auth", authRoutes);
 app.use("/api", protectedRoutes);
 
