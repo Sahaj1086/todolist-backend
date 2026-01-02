@@ -24,6 +24,33 @@
 //   console.log(`Server running on port ${process.env.PORT}`);
 // });
 
+// require("dotenv").config();
+// const express = require("express");
+// const cors = require("cors");
+
+// const authRoutes = require("../routes/authroutes/auth");
+// const protectedRoutes = require("../routes/protectedroutes/index");
+
+// const app = express();
+
+// app.use(
+//   cors({
+//     origin: "*", // change this
+//     credentials: true,
+//   })
+// );
+
+// app.use(express.json());
+
+// // public routes
+// app.use("/api/auth", authRoutes);
+
+// // protected routes
+// app.use("/api", protectedRoutes);
+
+// // ❌ REMOVE app.listen()
+// // ✅ EXPORT app
+// module.exports = app;
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -35,8 +62,13 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*", // change this
+    origin: [
+      "http://localhost:5173",               // local dev
+      "https://todolist-frontend-omega-two.vercel.app" // ✅ your frontend Vercel URL
+    ],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
@@ -48,6 +80,4 @@ app.use("/api/auth", authRoutes);
 // protected routes
 app.use("/api", protectedRoutes);
 
-// ❌ REMOVE app.listen()
-// ✅ EXPORT app
 module.exports = app;
