@@ -1,5 +1,5 @@
 const express = require("express");
-const auth = require("../../middleware/authMiddleware");
+const auth = require("../../middleware/authmiddleware");
 
 const dashboardRoutes = require("./dashboard");
 const todoRoutes = require("./todos");
