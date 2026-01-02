@@ -9,12 +9,13 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: "https://todolist-frontend-omega-two.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+app.options("*", cors()); 
 
 
 app.use(express.json());
